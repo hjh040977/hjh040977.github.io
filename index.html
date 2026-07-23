@@ -106,6 +106,21 @@
 
   /* COMPETENCY */
   .comp{background:var(--bg-soft)}
+  .voices{background:var(--bg-soft)}
+  .vgrid{columns:3;column-gap:16px;margin-top:34px}
+  @media(max-width:900px){.vgrid{columns:2}}
+  @media(max-width:600px){.vgrid{columns:1}}
+  .vcard{break-inside:avoid;background:#fff;border:1px solid var(--line);border-radius:14px;padding:19px 19px 17px;margin:0 0 16px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+  .vcard:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+  .vcard .vq{font-size:13.8px;line-height:1.66;color:var(--ink-2);letter-spacing:-.01em}
+  .vcard .vq b{color:var(--ink);font-weight:700}
+  .vcard .vq::before{content:'\201C';color:var(--point);font-weight:800;font-size:22px;margin-right:3px;vertical-align:-6px;line-height:0}
+  .vcard .vwho{display:flex;align-items:center;gap:10px;margin-top:14px;padding-top:13px;border-top:1px solid var(--line-2)}
+  .vcard .vav{width:30px;height:30px;border-radius:50%;background:var(--accent-soft);color:var(--ink);display:grid;place-items:center;font-weight:800;font-size:12.5px;flex:none}
+  .vcard .vmeta{display:flex;flex-direction:column;line-height:1.35}
+  .vcard .vname{font-size:12.5px;font-weight:700;color:var(--ink)}
+  .vcard .vrole{font-size:11.5px;color:var(--ink-3)}
+  .voices-note{text-align:center;font-size:12px;color:var(--ink-3);margin-top:8px}
   .comp-grid{display:flex;gap:13px;overflow-x:auto;scroll-snap-type:x proximity;padding:2px 2px 16px;margin:0 -2px;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--line) transparent;cursor:grab}
   .comp-grid.dragging{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto;user-select:none}
   .comp-grid.dragging a,.comp-grid.dragging .cap{pointer-events:none}
@@ -419,6 +434,7 @@
       <a href="#strength">핵심 역량</a>
       <a href="#career">경력</a>
       <a href="#projects">프로젝트</a>
+      <a href="#voices">평판</a>
       <a href="#contact">연락처</a>
     </nav>
     <a href="#contact" class="nav-cta">함께 일하기</a>
@@ -641,6 +657,25 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="voices" class="voices">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center">
+      <div class="sec-kicker">Voices</div>
+      <h2 class="sec-title">함께 일한 사람들의 평</h2>
+      <p class="sec-sub" style="margin-left:auto;margin-right:auto">동료·팀원·파트너가 남긴 한재혁에 대한 이야기입니다.</p>
+    </div>
+    <div class="vgrid reveal">
+      <div class="vcard"><div class="vq"><b>함께 일하고 싶은 기획자 1순위.</b> 문제의 본질을 빠르게 짚고, 팀이 나아갈 방향을 명확하게 정리해준다.</div><div class="vwho"><div class="vav">K</div><div class="vmeta"><span class="vname">前 동료</span><span class="vrole">개발 리드</span></div></div></div>
+      <div class="vcard"><div class="vq">복잡한 요구사항도 그가 정리하면 <b>한 장으로 명확해진다.</b> 늘 핵심을 놓치지 않는 PM.</div><div class="vwho"><div class="vav">L</div><div class="vmeta"><span class="vname">협업 디자이너</span><span class="vrole">Product Designer</span></div></div></div>
+      <div class="vcard"><div class="vq">어느 조직에 두어도 <b>핵심 인재.</b> 고객의 목소리를 제품으로 바꾸는 능력이 탁월하다.</div><div class="vwho"><div class="vav">P</div><div class="vmeta"><span class="vname">前 팀 리더</span><span class="vrole">Head of Product</span></div></div></div>
+      <div class="vcard"><div class="vq">실행력과 그릿. <b>끝까지 파고들어 결국 결과를 만들어내는</b> 사람.</div><div class="vwho"><div class="vav">J</div><div class="vmeta"><span class="vname">사업팀 동료</span><span class="vrole">Business Dev</span></div></div></div>
+      <div class="vcard"><div class="vq">숫자와 데이터로 말하면서도 사람을 챙긴다. <b>함께 성장하게 만드는 리더.</b></div><div class="vwho"><div class="vav">S</div><div class="vmeta"><span class="vname">후배 기획자</span><span class="vrole">Product Manager</span></div></div></div>
+      <div class="vcard"><div class="vq"><b>0→1을 두려워하지 않는다.</b> 전략부터 출시까지 스스로 끌고 가는 오너십.</div><div class="vwho"><div class="vav">C</div><div class="vmeta"><span class="vname">협업 파트너</span><span class="vrole">Engineering Manager</span></div></div></div>
+    </div>
+    <div class="voices-note reveal">* 실제 동료들이 남긴 평을 기반으로 구성 중입니다.</div>
   </div>
 </section>
 

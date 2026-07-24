@@ -1404,27 +1404,29 @@ route();
   var SUGGEST = ['도면 플랫폼(DrawX)이 뭐예요?','가장 큰 성과는?','현장 AI 경험 알려줘','채용 프로젝트','핵심 강점','연락하고 싶어요'];
 
   var KW = {
-    drawing:['도면','drawx','드로우','설계','제조','plm','다운스트림'],
-    b2b:['b2b','채용솔루션','recruiter','인사','saas','200억','1500','1,500'],
-    b2c:['b2c','잡다','jobda','채용앱','앱','100만','전환'],
-    tire:['타이어','생성형','디자인','12배'],
-    mlops:['mlops','자동화','파이프라인','llmops'],
-    annotation:['어노테이션','annotation','라벨','라벨링','데이터'],
-    vision:['비전','vision','품질','검사','edge','엣지'],
-    matching:['매칭','성공률'],
-    conversion:['전환율','퍼널','그로스'],
-    recommend:['추천서','ocr','stt','llm','gpt'],
-    agent:['에이전트','agent'],
-    aiops:['ai ops','백본'],
-    roadmap:['로드맵','전략','okr'],
-    members:['통합회원','회원'],
-    isms:['isms','보안','제품관리','인증'],
-    realestate:['분양','건설','부동산'],
-    kakao:['카카오','주문','배달','o2o'],
-    team:['팀 관리','중간관리자','리더십','육성'],
-    process:['프로세스','협업체계'],
-    etc:['홈페이지']
+    drawing:['도면','drawx','드로우','설계','제조','plm','다운스트림','가격','프라이싱','포지셔닝','커버리지','pmf','gtm','로드맵','스프린트','온프렘','견적','캐디','caddi','비링커','80%','건설','중공업','산업특화'],
+    b2b:['b2b','채용솔루션','recruiter','인사','saas','200억','1500','1,500','매출','스케일업','테넌트','erd'],
+    b2c:['b2c','잡다','jobda','채용앱','앱','100만','회원','유입'],
+    tire:['타이어','생성형','디자인','12배','리드타임','gan','이미지 생성'],
+    mlops:['mlops','자동화','파이프라인','llmops','오토','현대','삼성전기','object detection','재학습'],
+    annotation:['어노테이션','annotation','라벨','라벨링','오토라벨','autoannotation','runway'],
+    vision:['비전','vision','품질','검사','edge','엣지','불량','디텍션'],
+    matching:['매칭','성공률','1%','6배'],
+    conversion:['전환율','퍼널','그로스','4.5배','가설검증','습관'],
+    recommend:['추천서','ocr','stt','llm','gpt','자연어'],
+    agent:['에이전트','agent','챗봇','비개발자'],
+    aiops:['ai ops','백본','빙산'],
+    roadmap:['로드맵','전략','okr','활성화','대시보드'],
+    members:['통합회원','회원 설계','sso'],
+    isms:['isms','보안','제품관리','인증','1500사','운영'],
+    realestate:['분양','건설','부동산','디지털 분양'],
+    kakao:['카카오','주문','배달','o2o','주문하기'],
+    team:['팀 관리','중간관리자','리더십','육성','매니징','스크럼','애자일'],
+    process:['프로세스','협업체계','기획 프로세스'],
+    etc:['홈페이지','기타']
   };
+
+  var AI_IDS=['annotation','tire','drawing','mlops','vision','recommend','agent','aiops'];
 
   // ==== styles ====
   var css = ''
@@ -1536,18 +1538,25 @@ route();
     return {text:'대표 성과예요:\n'+lines.join('\n'), cards:[{name:'성과 전체 보기',cat:'IMPACT 섹션으로 이동',act:'scroll:impact'}]};
   }
 
+  function projExtra(id){
+    var t='';
+    try{ if(typeof PROJECTS!=='undefined'&&PROJECTS[id]){ var p=PROJECTS[id]; t+=' '+(p.overview||''); if(p.star){t+=' '+(p.star.s||'')+' '+(p.star.t||'')+' '+(p.star.a||'')+' '+(p.star.r||'');} } }catch(e){}
+    try{ if(typeof DETAIL!=='undefined'&&DETAIL[id]){ t+=' '+(DETAIL[id].overview||''); } }catch(e){}
+    return t.toLowerCase();
+  }
   function search(q){
     var res=[];
-    (window.ALL||[]).forEach(function(m){
-      var hay=((m.name||'')+' '+(m.cat||'')+' '+((m.tags||[]).join(' '))+' '+(m.contrib||'')+' '+(m.result||'')).toLowerCase();
+    (typeof ALL!=='undefined'?ALL:[]).forEach(function(m){
+      var hay=((m.name||'')+' '+(m.cat||'')+' '+((m.tags||[]).join(' '))+' '+(m.contrib||'')+' '+(m.result||'')+' '+projExtra(m.id)).toLowerCase();
       var sc=0;
       (KW[m.id]||[]).forEach(function(k){ if(q.indexOf(k)>=0) sc+=3; });
       q.split(/[\s,·?!.]+/).forEach(function(t){ if(t.length>=2 && hay.indexOf(t)>=0) sc+=1; });
       if(sc>0) res.push({m:m,sc:sc});
     });
     res.sort(function(a,b){ return b.sc-a.sc; });
-    return res.slice(0,3).map(function(r){ return r.m; });
+    return res.slice(0,4).map(function(r){ return r.m; });
   }
+  function byIds(ids){ var out=[]; (typeof ALL!=='undefined'?ALL:[]).forEach(function(m){ if(ids.indexOf(m.id)>=0) out.push(m); }); return out; }
 
   function toCards(list){ return list.map(function(m){ return {name:m.name, cat:m.cat+' · '+(m.result||m.role||''), act:'open:'+m.id}; }); }
 
@@ -1568,14 +1577,38 @@ route();
     if(has(q,'소개','누구','어떤 사람','about','누구세요','자기소개','한재혁')){
       return {text:'한재혁님은 AI와 가치를 잇는 신제품 기획자(PM)예요. B2B SaaS·AI 솔루션으로 기업의 생산성과 고객 경험을 개선해왔고, 문제 정의부터 출시까지 0→1로 리딩합니다. 9년+ 경력에 200억 매출·100만 회원 등의 성과가 있어요.', chips:['가장 큰 성과는?','현장 AI 경험','핵심 강점']};
     }
-    if(has(q,'경력','이력','회사','근무','커리어','career','연차','몇 년')){
+    if(has(q,'경력','이력','회사','근무','커리어','career','연차','몇 년','어디서 일','재직')){
       return {text:'삼성SDS · 카카오 · 마이다스아이티 · 마키나락스 등에서 9년+ 제품 기획 경력을 쌓았어요. 자세한 타임라인은 경력 섹션에서 볼 수 있어요.', cards:[{name:'경력 보기',cat:'Career 섹션',act:'scroll:career'}]};
     }
+    if(has(q,'평판','후기','추천','레퍼런스','reference','동료','평가','같이 일한','리뷰')){
+      return {text:'함께 일한 리더·동료·개발자·파트너가 남긴 평이 "평판" 섹션에 있어요. 팔로워십, 문제 정리, 멘탈·인내력, 실행력, 오너십 등에 대한 이야기예요.', cards:[{name:'평판 보기',cat:'Voices 섹션',act:'scroll:voices'}]};
+    }
+    if(has(q,'발표','영상','유튜브','youtube','강연','비디오','video','발표자료')){
+      return {text:'제조 AI 도면 제품(DrawX)에 대한 발표 영상이 있어요. DrawX 상세페이지 상단에서 바로 재생할 수 있어요.', cards:[{name:'산업특화 AI 도면 플랫폼 (DrawX)',cat:'발표 영상 포함',act:'open:drawing'}]};
+    }
+    if(has(q,'학력','전공','education','졸업','대학','학교','산업공학','디자인공학')){
+      return {text:'산업시스템공학 전공, 디자인공학 복수전공 배경이에요. 개발·데이터에 대한 기초와 문제해결 사고를 함께 갖췄습니다. 학력·도구는 Skills 섹션에서 볼 수 있어요.', cards:[{name:'Skills & Education 보기',cat:'Skills 섹션',act:'scroll:skills'}]};
+    }
+    if(has(q,'도구','스택','tool','tech stack','figma','피그마','jira','notion','노션','confluence','협업 툴','어떤 툴')){
+      return {text:'Figma·Jira·Notion·Confluence 같은 협업/기획 도구와 ERD·프로토타입·데이터 분석까지 폭넓게 다뤄요. 자세한 목록은 Skills 섹션에 있어요.', cards:[{name:'도구 · 역량 보기',cat:'Skills 섹션',act:'scroll:skills'}]};
+    }
+    if(has(q,'전체 프로젝트','프로젝트 목록','프로젝트들','뭐 했','어떤 프로젝트','무슨 프로젝트','몇 개','전체 보기','다 보여','리스트')){
+      return {text:'채용·건설·제조 등 다양한 산업에서 20개 프로젝트를 진행했어요. 아래에서 전체 목록을 볼 수 있고, 검색·태그 필터도 됩니다.', cards:[{name:'프로젝트 전체 보기',cat:'Projects 섹션 · 검색/필터',act:'scroll:projects'}]};
+    }
+    if((has(q,'인공지능')||has(q,'ai 프로젝트')||has(q,'ai 관련')||has(q,'머신러닝')||q.trim()==='ai') && search(q).length<2){
+      var ai=byIds(AI_IDS);
+      if(ai.length) return {text:'AI/ML 관련 프로젝트들이에요. 실제 현장에 적용된 것들 위주예요:', cards:toCards(ai.slice(0,4))};
+    }
+    if(has(q,'삼성','sds')){ return {text:'삼성SDS에서의 경력은 Career 섹션에서 확인할 수 있어요.', cards:[{name:'경력 보기',cat:'Career 섹션',act:'scroll:career'}]}; }
+    if(has(q,'카카오')){ var k=byIds(['kakao']); return {text:'카카오에서는 카카오톡 주문하기 서비스를 런칭했어요.', cards: k.length?toCards(k):[{name:'경력 보기',cat:'Career',act:'scroll:career'}]}; }
+    if(has(q,'마키나','makina','도면','drawx')){ return {text:'마키나락스에서는 산업특화 AI 도면 플랫폼(DrawX)을 제품 전략부터 출시까지 0→1로 리딩했어요.', cards:toCards(byIds(['drawing','mlops','annotation','tire']).slice(0,4))}; }
+    if(has(q,'마이다스')){ return {text:'마이다스아이티에서는 B2B 채용솔루션(200억 성장)과 B2C 채용앱(100만 회원)을 신제품으로 출시했어요.', cards:toCards(byIds(['b2b','b2c','matching','conversion']).slice(0,4))}; }
+
     var found=search(q);
     if(found.length){
       return {text:'관련해서 이런 프로젝트가 있어요:', cards:toCards(found)};
     }
-    return {text:'음, 딱 맞는 걸 못 찾았어요. 이런 걸 물어보실 수 있어요:', chips:SUGGEST};
+    return {text:'음, 딱 맞는 걸 못 찾았어요. 프로젝트·성과·역량·경력·평판·연락처 등을 물어보실 수 있어요. 예를 들면:', chips:SUGGEST};
   }
 
   // ==== logging ====

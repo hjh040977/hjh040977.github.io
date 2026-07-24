@@ -407,6 +407,20 @@
   .d-partn{font-size:13px;font-weight:800;letter-spacing:.1em;opacity:.5;flex:none}
   .d-parttt{font-size:17px;font-weight:770;letter-spacing:-.02em}
   .d-partsub{font-size:12.5px;opacity:.74;margin-top:3px;line-height:1.5}
+  /* At-a-glance summary */
+  .d-glance{display:flex;align-items:stretch;gap:0;margin:0 0 30px;flex-wrap:wrap}
+  .d-glance .g{flex:1;min-width:210px;background:var(--bg-softer);border:1px solid var(--line);border-radius:12px;padding:15px 17px}
+  .d-glance .g.r{background:var(--point-soft);border-color:#f0d9d0}
+  .d-glance .gl{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;color:var(--ink-3)}
+  .d-glance .g.s .gl{color:var(--ink)}
+  .d-glance .g.r .gl{color:var(--point)}
+  .d-glance .gt{font-size:13.2px;line-height:1.6;color:var(--ink-2)}
+  .d-glance .ga{display:flex;align-items:center;color:var(--ink-3);font-weight:800;font-size:16px;padding:0 8px}
+  @media(max-width:720px){.d-glance{flex-direction:column}.d-glance .ga{transform:rotate(90deg);padding:4px 0;align-self:center}}
+  /* Expand/collapse all */
+  .d-acctools{display:flex;justify-content:flex-end;margin:2px 0 10px}
+  .d-acctools button{font-size:12.5px;font-weight:650;color:var(--ink-2);background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer;transition:border-color .15s}
+  .d-acctools button:hover{border-color:var(--ink-3)}
   /* Collapsible subsections */
   .d-acc{border:1px solid var(--line);border-radius:12px;margin:12px 0;overflow:hidden;background:#fff}
   .d-acc[open]{box-shadow:var(--shadow)}
@@ -783,6 +797,7 @@ const PROJECTS = {
     period:'2025.03 – 현재', role:'Product Owner', company:'마키나락스',
     tags:['B2B','AI','신사업','제품전략','GTM','PMF'],
     video:{id:'rD6VzgT98Tc',start:6,lb:'제품 발표 영상',nt:'MakinaRocks · 산업특화 AI 도면 플랫폼 발표'},
+    glance:{problem:'제조 현장의 도면 중심 의사결정이 사람의 경험·직감에 의존 — 발견·해석·소통·관리에 많은 시간이 소요',solution:'도면을 AI로 비교·분석·검색·판단하는 B2B SaaS를, 제품 전략부터 출시까지 창업자처럼 0→1로 설계',result:'설계 검토 시간 80%+ 단축, 엔터프라이즈 고객 파이프라인 확보, AW2026 컨퍼런스 발표'},
     card:{em:'📐',pk:'AI · Drawing (DrawX)', p:'제품 전략(제공 모델·포지셔닝·가격 정책·커버리지 맵)부터 PMF 검증, 제품 컨셉·프로토타입·MLOps 연동까지 — 창업자처럼 0→1로 리딩한 산업특화 AI 도면 플랫폼.', result:'설계 검토 시간 80% 단축'},
     contrib:'제공 모델·시장 포지셔닝·가격 정책·기능 커버리지 맵 같은 제품 전략부터, 사업 요구사항을 정렬하고 우선순위를 합의하는 PMF 싱크업 운영, 그리고 문제 정의·제품 컨셉·프로토타입·MLOps 연동까지 — 창업자처럼 0→1 전 과정을 홀로 엔드투엔드로 리딩했습니다.',
     metrics:[{n:'80%+',l:'도면 비교·검토 시간 단축'},{n:'99.8%',l:'AI 도면 비교 정확도 (목표)'},{n:'30초',l:'유사 도면 검색 (기존 30분)'}],
@@ -1159,6 +1174,9 @@ function starMap(st){
   const rows=[['S','Situation','상황',st.s],['T','Task','과제',st.t],['A','Action','실행',st.a],['R','Result','성과',st.r]];
   return `<div class="d-starmap">${rows.map(r=>`<div class="sm st-${r[0]}"><div class="sb">${r[0]}</div><div class="sk">${r[1]} · ${r[2]}</div><div class="sx">${esc(r[3])}</div></div>`).join('')}</div>`;
 }
+function glanceHTML(g){
+  return '<div class="d-glance reveal">'+'<div class="g p"><div class="gl">문제</div><div class="gt">'+esc(g.problem)+'</div></div>'+'<span class="ga" aria-hidden="true">→</span>'+'<div class="g s"><div class="gl">해결</div><div class="gt">'+esc(g.solution)+'</div></div>'+'<span class="ga" aria-hidden="true">→</span>'+'<div class="g r"><div class="gl">임팩트</div><div class="gt">'+esc(g.result)+'</div></div>'+'</div>';
+}
 function detailHTML(id){
   const p=PROJECTS[id];
   const prod=((typeof META==='function'?META(id):null)||{}).product||p.product;
@@ -1205,6 +1223,7 @@ function detailHTML(id){
     ${prod?`<a class="d-product" href="${prod.url}" target="_blank" rel="noopener"><span class="d-product-logo">${prod.html||esc(prod.name)}</span><span class="d-product-tx">라이브 제품 · 소개 페이지 <span aria-hidden="true">↗</span></span></a>`:''}
   </div></div>
   <div class="d-body"><div class="wrap">
+    ${p.glance?glanceHTML(p.glance):''}
     <div class="d-metrics">${metrics}</div>
     ${video}
     ${starMap(p.star)}
@@ -1323,6 +1342,7 @@ function renderDetail(id){
   const t=themeFor(id);
   if(t){ detailEl.style.setProperty('--accent',t.a); detailEl.style.setProperty('--accent-soft',t.s); detailEl.style.setProperty('--accent-ink',t.i); }
   detailEl.innerHTML = PROJECTS[id] ? detailHTML(id) : ((typeof DETAIL!=='undefined'&&DETAIL[id]) ? detailMidHTML(id) : detailLiteHTML(id));
+  (function(){var firstAcc=detailEl.querySelector('.d-acc'); if(!firstAcc) return; var bar=document.createElement('div'); bar.className='d-acctools'; bar.innerHTML='<button type="button">전체 펼치기</button>'; firstAcc.parentNode.insertBefore(bar,firstAcc); var btn=bar.querySelector('button'); btn.addEventListener('click',function(){var accs=detailEl.querySelectorAll('.d-acc'); var anyClosed=[].some.call(accs,function(a){return !a.open;}); [].forEach.call(accs,function(a){a.open=anyClosed;}); btn.textContent=anyClosed?'전체 접기':'전체 펼치기';});})();
   mainEl.style.display='none';
   detailEl.style.display='block';
   window.scrollTo(0,0);

@@ -1394,5 +1394,217 @@ route();
   rail.addEventListener('dragstart',function(e){ e.preventDefault(); });
 })();
 </script>
+<script>
+(function(){
+  // ==== CONFIG ====
+  // Formspree 엔드포인트를 여기에 붙여넣으면 방문자 질문이 자동 수집됩니다.
+  // 예: 'https://formspree.io/f/abcdwxyz'
+  var FORMSPREE_ENDPOINT = '';
+
+  var SUGGEST = ['도면 플랫폼(DrawX)이 뭐예요?','가장 큰 성과는?','현장 AI 경험 알려줘','채용 프로젝트','핵심 강점','연락하고 싶어요'];
+
+  var KW = {
+    drawing:['도면','drawx','드로우','설계','제조','plm','다운스트림'],
+    b2b:['b2b','채용솔루션','recruiter','인사','saas','200억','1500','1,500'],
+    b2c:['b2c','잡다','jobda','채용앱','앱','100만','전환'],
+    tire:['타이어','생성형','디자인','12배'],
+    mlops:['mlops','자동화','파이프라인','llmops'],
+    annotation:['어노테이션','annotation','라벨','라벨링','데이터'],
+    vision:['비전','vision','품질','검사','edge','엣지'],
+    matching:['매칭','성공률'],
+    conversion:['전환율','퍼널','그로스'],
+    recommend:['추천서','ocr','stt','llm','gpt'],
+    agent:['에이전트','agent'],
+    aiops:['ai ops','백본'],
+    roadmap:['로드맵','전략','okr'],
+    members:['통합회원','회원'],
+    isms:['isms','보안','제품관리','인증'],
+    realestate:['분양','건설','부동산'],
+    kakao:['카카오','주문','배달','o2o'],
+    team:['팀 관리','중간관리자','리더십','육성'],
+    process:['프로세스','협업체계'],
+    etc:['홈페이지']
+  };
+
+  // ==== styles ====
+  var css = ''
+  + '.cbot-fab{position:fixed;right:22px;bottom:22px;z-index:130;width:56px;height:56px;border-radius:50%;background:#171717;border:none;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.22);display:grid;place-items:center;transition:transform .2s}'
+  + '.cbot-fab:hover{transform:translateY(-2px) scale(1.03)}'
+  + '.cbot-fab svg{width:26px;height:26px;display:block}'
+  + '.cbot-fab.hide{display:none}'
+  + '.cbot-panel{position:fixed;right:22px;bottom:22px;z-index:131;width:366px;max-width:calc(100vw - 28px);height:540px;max-height:calc(100vh - 44px);background:#fff;border:1px solid #e8e7e5;border-radius:18px;box-shadow:0 24px 64px rgba(0,0,0,.24);display:none;flex-direction:column;overflow:hidden}'
+  + '.cbot-panel.open{display:flex;animation:cbotin .2s ease}'
+  + '@keyframes cbotin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}'
+  + '.cbot-head{background:#171717;color:#fff;padding:14px 15px;display:flex;align-items:center;gap:10px;flex:none}'
+  + '.cbot-head .lg{width:30px;height:30px;border-radius:8px;overflow:hidden;flex:none}'
+  + '.cbot-head .lg svg{width:100%;height:100%;display:block}'
+  + '.cbot-head .ti{font-weight:700;font-size:14px;line-height:1.2}'
+  + '.cbot-head .sb{font-size:11px;color:rgba(255,255,255,.6);margin-top:1px}'
+  + '.cbot-head .x{margin-left:auto;cursor:pointer;color:rgba(255,255,255,.65);font-size:20px;line-height:1;background:none;border:none;padding:4px}'
+  + '.cbot-head .x:hover{color:#fff}'
+  + '.cbot-body{flex:1;overflow-y:auto;padding:15px;background:#fafafa;display:flex;flex-direction:column;gap:9px}'
+  + '.cbot-msg{max-width:86%;font-size:13.3px;line-height:1.62;padding:10px 13px;border-radius:14px;white-space:pre-wrap;word-break:break-word}'
+  + '.cbot-bot{align-self:flex-start;background:#fff;border:1px solid #e8e7e5;color:#333;border-bottom-left-radius:5px}'
+  + '.cbot-user{align-self:flex-end;background:#171717;color:#fff;border-bottom-right-radius:5px}'
+  + '.cbot-cards{align-self:flex-start;max-width:92%;display:flex;flex-direction:column;gap:7px;margin:2px 0}'
+  + '.cbot-card{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #e8e7e5;border-radius:11px;padding:10px 12px;cursor:pointer;text-align:left;transition:border-color .15s,transform .15s;width:100%}'
+  + '.cbot-card:hover{border-color:#8c8c8c;transform:translateY(-1px)}'
+  + '.cbot-card .cn{font-size:13px;font-weight:700;color:#171717;line-height:1.3}'
+  + '.cbot-card .cc{font-size:11.5px;color:#8c8c8c;margin-top:2px}'
+  + '.cbot-card .cg{margin-left:auto;color:#c0492e;font-weight:700;font-size:13px;flex:none}'
+  + '.cbot-chips{align-self:flex-start;display:flex;flex-wrap:wrap;gap:6px;margin:2px 0}'
+  + '.cbot-chip{font-size:12px;border:1px solid #e8e7e5;background:#fff;color:#333;padding:6px 11px;border-radius:999px;cursor:pointer;transition:background .15s}'
+  + '.cbot-chip:hover{background:#f1f0ee}'
+  + '.cbot-foot{border-top:1px solid #e8e7e5;padding:10px;display:flex;gap:8px;background:#fff;flex:none}'
+  + '.cbot-foot input{flex:1;border:1px solid #e8e7e5;border-radius:999px;padding:9px 14px;font-size:13.3px;outline:none;font-family:inherit}'
+  + '.cbot-foot input:focus{border-color:#171717}'
+  + '.cbot-foot button{width:38px;height:38px;flex:none;border-radius:50%;background:#171717;color:#fff;border:none;cursor:pointer;display:grid;place-items:center}'
+  + '.cbot-foot button:hover{background:#000}'
+  + '.cbot-note{font-size:10.5px;color:#b3b3b3;text-align:center;padding:0 12px 8px;background:#fff}'
+  + '@media(max-width:480px){.cbot-panel{right:10px;left:10px;width:auto;bottom:10px;height:calc(100vh - 20px)}.cbot-fab{right:16px;bottom:16px}}';
+
+  var st=document.createElement('style'); st.textContent=css; document.head.appendChild(st);
+
+  var LOGO='<svg viewBox="0 0 100 100"><rect width="100" height="100" rx="26" fill="#171717"/><rect x="29" y="27" width="10" height="46" rx="5" fill="#fff"/><rect x="61" y="27" width="10" height="46" rx="5" fill="#fff"/><path d="M34 56 L66 44" stroke="#c0492e" stroke-width="9" stroke-linecap="round"/></svg>';
+
+  // ==== FAB ====
+  var fab=document.createElement('button');
+  fab.className='cbot-fab'; fab.setAttribute('aria-label','한재혁 AI 어시스턴트 열기');
+  fab.innerHTML='<svg viewBox="0 0 24 24"><path d="M4 4.5h16A1.6 1.6 0 0 1 21.6 6.1v8.3A1.6 1.6 0 0 1 20 16h-8.2l-4.3 3.4v-3.4H4A1.6 1.6 0 0 1 2.4 14.4V6.1A1.6 1.6 0 0 1 4 4.5Z" fill="#fff"/><circle cx="8.6" cy="10.2" r="1.25" fill="#171717"/><circle cx="12" cy="10.2" r="1.25" fill="#171717"/><circle cx="15.4" cy="10.2" r="1.25" fill="#c0492e"/></svg>';
+  document.body.appendChild(fab);
+
+  // ==== Panel ====
+  var panel=document.createElement('div'); panel.className='cbot-panel';
+  panel.innerHTML=''
+  + '<div class="cbot-head"><span class="lg">'+LOGO+'</span><div><div class="ti">한재혁 AI 어시스턴트</div><div class="sb">궁금한 걸 물어보세요</div></div><button class="x" aria-label="닫기">&times;</button></div>'
+  + '<div class="cbot-body" id="cbotBody"></div>'
+  + '<div class="cbot-note">사이트 내용을 기반으로 답합니다 · 정확한 문의는 연락처로</div>'
+  + '<div class="cbot-foot"><input id="cbotInput" type="text" placeholder="예) 도면 프로젝트가 뭐예요?" autocomplete="off"><button id="cbotSend" aria-label="보내기"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M3.4 20.4 21 12 3.4 3.6l.02 6.5L15 12l-11.58 1.9z" fill="#fff"/></svg></button></div>';
+  document.body.appendChild(panel);
+
+  var body=panel.querySelector('#cbotBody');
+  var input=panel.querySelector('#cbotInput');
+  var greeted=false;
+
+  function open(){ panel.classList.add('open'); fab.classList.add('hide'); if(!greeted){greet();greeted=true;} setTimeout(function(){input.focus();},50); }
+  function close(){ panel.classList.remove('open'); fab.classList.remove('hide'); }
+  fab.addEventListener('click',open);
+  panel.querySelector('.x').addEventListener('click',close);
+
+  function el(cls,html){ var d=document.createElement('div'); d.className=cls; if(html!=null)d.innerHTML=html; return d; }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
+  function scrollBottom(){ body.scrollTop=body.scrollHeight; }
+
+  function addBot(text){ body.appendChild(el('cbot-msg cbot-bot',esc(text))); scrollBottom(); }
+  function addUser(text){ body.appendChild(el('cbot-msg cbot-user',esc(text))); scrollBottom(); }
+  function addCards(cards){
+    var wrap=el('cbot-cards');
+    cards.forEach(function(c){
+      var card=el('cbot-card');
+      card.innerHTML='<div><div class="cn">'+esc(c.name)+'</div>'+(c.cat?'<div class="cc">'+esc(c.cat)+'</div>':'')+'</div><span class="cg">&rarr;</span>';
+      card.addEventListener('click',function(){ doAct(c.act); });
+      wrap.appendChild(card);
+    });
+    body.appendChild(wrap); scrollBottom();
+  }
+  function addChips(chips){
+    var wrap=el('cbot-chips');
+    chips.forEach(function(t){ var b=el('cbot-chip',esc(t)); b.addEventListener('click',function(){ submit(t); }); wrap.appendChild(b); });
+    body.appendChild(wrap); scrollBottom();
+  }
+
+  function doAct(act){
+    if(!act) return;
+    if(act.indexOf('open:')===0){ var id=act.slice(5); if(window.openDetail) window.openDetail(id); close(); }
+    else if(act.indexOf('scroll:')===0){ var sec=act.slice(7); if(window.goHome) window.goHome(); setTimeout(function(){ location.hash=sec; },40); close(); }
+  }
+
+  function greet(){
+    addBot('안녕하세요! 한재혁님의 포트폴리오 AI 어시스턴트예요. 프로젝트·성과·역량 등 궁금한 걸 물어보시면 관련 내용을 찾아드릴게요.');
+    addChips(SUGGEST);
+  }
+
+  // ==== answer engine ====
+  function has(q){ for(var i=1;i<arguments.length;i++){ if(q.indexOf(arguments[i])>=0) return true; } return false; }
+
+  function metricsAnswer(){
+    var ms=[].slice.call(document.querySelectorAll('#impact .metric'));
+    var lines=ms.map(function(m){
+      var num=(m.querySelector('.num')||{}).textContent||''; var lab=(m.querySelector('.lab')||{}).textContent||'';
+      return '· '+num.trim()+' — '+lab.trim();
+    });
+    return {text:'대표 성과예요:\n'+lines.join('\n'), cards:[{name:'성과 전체 보기',cat:'IMPACT 섹션으로 이동',act:'scroll:impact'}]};
+  }
+
+  function search(q){
+    var res=[];
+    (window.ALL||[]).forEach(function(m){
+      var hay=((m.name||'')+' '+(m.cat||'')+' '+((m.tags||[]).join(' '))+' '+(m.contrib||'')+' '+(m.result||'')).toLowerCase();
+      var sc=0;
+      (KW[m.id]||[]).forEach(function(k){ if(q.indexOf(k)>=0) sc+=3; });
+      q.split(/[\s,·?!.]+/).forEach(function(t){ if(t.length>=2 && hay.indexOf(t)>=0) sc+=1; });
+      if(sc>0) res.push({m:m,sc:sc});
+    });
+    res.sort(function(a,b){ return b.sc-a.sc; });
+    return res.slice(0,3).map(function(r){ return r.m; });
+  }
+
+  function toCards(list){ return list.map(function(m){ return {name:m.name, cat:m.cat+' · '+(m.result||m.role||''), act:'open:'+m.id}; }); }
+
+  function answer(qraw){
+    var q=(qraw||'').toLowerCase();
+    if(has(q,'연락','contact','이메일','메일','email','같이 일','채용 제안','제안','섭외','문의','커피챗','미팅')){
+      return {text:'연락은 하단 Contact 섹션에서 하실 수 있어요. 아래를 눌러 바로 이동할게요.', cards:[{name:'연락처로 이동',cat:'Contact 섹션',act:'scroll:contact'}]};
+    }
+    if(has(q,'성과','실적','매출','숫자','impact','임팩트','얼마','성장','결과','대표')){
+      return metricsAnswer();
+    }
+    if(has(q,'강점','역량','잘하','장점','핵심 역량','competenc','스킬')){
+      return {text:'검증된 7대 핵심 역량이에요: 문제정의 · 문제해결 · AI/ML 리터러시 · 데이터 리터러시 · 프로젝트 매니징 · 커뮤니케이션·리더십 · 위기관리. 각 역량은 실제 프로젝트로 연결돼 있어요.', cards:[{name:'핵심 역량 보기',cat:'Core Strength 섹션',act:'scroll:strength'}]};
+    }
+    if(has(q,'현장','서버실','실제 운영','배포 경험','field','필드','제조 현장','shop','end-to-end','엔드투엔드')){
+      return {text:'연구실 데모가 아니라 현장에서 돌아가는 AI를 만드는 게 강점이에요. 서버실(MLOps)부터 현장 사용자까지 — 제조 현장에서 직접 만들고, 보급하고, 검증하고, 개선한 경험이 있습니다.', cards:[{name:'MLOps 자동화 플랫폼',cat:'제조 대기업 · E2E 구축',act:'open:mlops'},{name:'산업특화 AI 도면 플랫폼 (DrawX)',cat:'현장 검증 AI 제품',act:'open:drawing'}]};
+    }
+    if(has(q,'소개','누구','어떤 사람','about','누구세요','자기소개','한재혁')){
+      return {text:'한재혁님은 AI와 가치를 잇는 신제품 기획자(PM)예요. B2B SaaS·AI 솔루션으로 기업의 생산성과 고객 경험을 개선해왔고, 문제 정의부터 출시까지 0→1로 리딩합니다. 9년+ 경력에 200억 매출·100만 회원 등의 성과가 있어요.', chips:['가장 큰 성과는?','현장 AI 경험','핵심 강점']};
+    }
+    if(has(q,'경력','이력','회사','근무','커리어','career','연차','몇 년')){
+      return {text:'삼성SDS · 카카오 · 마이다스아이티 · 마키나락스 등에서 9년+ 제품 기획 경력을 쌓았어요. 자세한 타임라인은 경력 섹션에서 볼 수 있어요.', cards:[{name:'경력 보기',cat:'Career 섹션',act:'scroll:career'}]};
+    }
+    var found=search(q);
+    if(found.length){
+      return {text:'관련해서 이런 프로젝트가 있어요:', cards:toCards(found)};
+    }
+    return {text:'음, 딱 맞는 걸 못 찾았어요. 이런 걸 물어보실 수 있어요:', chips:SUGGEST};
+  }
+
+  // ==== logging ====
+  function logQ(q){
+    if(!FORMSPREE_ENDPOINT) return;
+    try{
+      fetch(FORMSPREE_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+        body:JSON.stringify({question:q, at:new Date().toISOString(), path:location.href, ua:navigator.userAgent})});
+    }catch(e){}
+  }
+
+  function submit(text){
+    var q=(text!=null?text:input.value).trim();
+    if(!q) return;
+    input.value='';
+    addUser(q);
+    logQ(q);
+    setTimeout(function(){
+      var a=answer(q);
+      if(a.text) addBot(a.text);
+      if(a.cards && a.cards.length) addCards(a.cards);
+      if(a.chips && a.chips.length) addChips(a.chips);
+    },220);
+  }
+
+  panel.querySelector('#cbotSend').addEventListener('click',function(){ submit(); });
+  input.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); submit(); } });
+})();
+
+</script>
 </body>
 </html>

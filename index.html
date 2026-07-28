@@ -1060,7 +1060,7 @@ const ALL = [
   {id:'members',cat:'Platform',name:'플랫폼 통합회원 설계·구축',period:'2022.06 ~ 2022.12',role:'PO',company:'마이다스아이티',tags:['통합회원','백오피스','플랫폼'],contrib:'통합회원 인증·권한 관리 구조 설계, 백오피스 운영 효율화'},
   {id:'b2c',cat:'B2C Growth',name:'B2C 채용 앱 100만 회원',period:'2022.05 ~ 2023.05',role:'PO',company:'마이다스아이티',tags:['B2C','신사업','앱'],product:{name:'jobda',html:'jobda<span class="lx">.</span>',url:'https://www.jobda.im/'},contrib:'앱/웹 사용자 여정 설계와 데이터 기반 개선으로 100만 회원 확보',result:'100만 회원 · 매칭률 6배',featured:true},
   {id:'b2b',cat:'B2B SaaS',name:'B2B 채용솔루션 200억 성장',period:'2021.07 ~ 2023.05',role:'PO',company:'마이다스아이티',tags:['B2B','신사업','플랫폼','SaaS'],product:{name:'Recruiter S',url:'https://h.place/product/recruiter-s'},contrib:'B2B SaaS 신제품 기획 및 출시로 매출 200억 성장 견인',result:'200억 매출 · 1,500사',featured:true},
-  {id:'process',cat:'Process',name:'기획 프로세스·협업체계 구축',period:'2021.07 ~ 2023.05',role:'PM',company:'마이다스아이티',tags:['스크럼','애자일'],contrib:'애자일·스크럼 프로세스 도입, 협업체계 및 산출물 표준화 정착'},
+  {id:'process',cat:'Process',name:'기획 프로세스·협업체계 구축',period:'2021.07 ~ 2023.05',role:'PM',company:'마이다스아이티',tags:['스크럼','애자일'],contrib:'애자일·스크럼 프로세스 도입, 협업체계 및 산출물 표준화 정착',result:'애자일·스크럼 협업체계 표준화'},
   {id:'isms',cat:'Product Ops',name:'SaaS 제품관리 (ISMS 인증)',period:'2019.01 ~ 2021.07',role:'PM',company:'마이다스아이티',tags:['정보보호','제품관리'],contrib:'ISMS 인증 대응, 보안·제품 관리 체계 구축'},
   {id:'realestate',cat:'CRM · 신사업',name:'디지털 분양솔루션 런칭',period:'2018.02 ~ 2018.12',role:'서비스기획',company:'마이다스아이티',tags:['신사업','CRM'],contrib:'CRM 기반 디지털 분양솔루션 출시로 신규 매출 창출'},
   {id:'etc',cat:'Web / App',name:'홈페이지·앱 기획 다수',period:'2017.08 ~ 2018.12',role:'서비스기획',company:'마이다스아이티',tags:['제품관리'],contrib:'다수 웹/앱 기획 및 운영으로 제품 경험 축적'},
@@ -1118,8 +1118,8 @@ function detailMidHTML(id){
 let PROJ_VIEW='gallery', PROJ_TAG=null, PROJ_Q='';
 function projCard(m,i){
   const tags=(m.tags||[]).slice(0,3).map(x=>`<span class="pt">${esc(x)}</span>`).join('');
-  const foot=m.featured
-    ? `<div class="result">${esc(m.result||'')}</div><span class="more">자세히 보기 <span aria-hidden="true">→</span></span>`
+  const foot=m.result
+    ? `<div class="result">${esc(m.result)}</div><span class="more">자세히 보기 <span aria-hidden="true">→</span></span>`
     : `<span class="more" style="margin-top:14px">자세히 보기 <span aria-hidden="true">→</span></span>`;
   const plogo=m.product?`<a class="plogo" href="${m.product.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="${esc(m.product.name)} 제품 소개 페이지 열기"><span class="plogo-tx">${m.product.html||esc(m.product.name)}</span><span class="plogo-go" aria-hidden="true">↗</span></a>`:'';
   return `<div class="pcard reveal${m.product?' has-logo':''}" onclick="openDetail('${m.id}')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openDetail('${m.id}')">

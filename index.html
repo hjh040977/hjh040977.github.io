@@ -1775,13 +1775,13 @@ route();
 (function(){
   var CATC={ '제품·전략':'#2f3a44', '그로스·데이터':'#2f4039', '리더십·팀':'#3f342f', '인간·통찰':'#38303f' };
   var BOOKS=[
-    {t:'인스파이어드',a:'마티 케이건',c:'제품·전략',why:'아웃풋이 아니라 아웃컴.',
+    {t:'인스파이어드',isbn:'9791188621484',a:'마티 케이건',c:'제품·전략',why:'아웃풋이 아니라 아웃컴.',
       learn:'기능을 만들기 전에 "왜 만드는가"와 성과 가설을 먼저 세우고, Product Discovery(인터뷰·프로토타입)로 검증해야 한다는 것.',
       apply:'DrawX·Annotation에서 기능 나열 대신 고객 문제 정의 → 가설 → 발견 → 검증 프로세스를 제품 기획의 기본으로 세웠습니다.'},
-    {t:'프로덕트 오너',a:'',c:'제품·전략',why:'우선순위가 곧 전략.',
+    {t:'프로덕트 오너',isbn:'9788984077843',a:'',c:'제품·전략',why:'우선순위가 곧 전략.',
       learn:'PO의 역할과 책임 — 무엇을 안 할지 정하고, 이해관계자를 조율하며 오너십으로 끌고 가는 것.',
       apply:'PMF 싱크업에서 사업·개발 사이 우선순위를 합의하고 릴리즈 방향을 조율하는 오너십으로 적용했습니다.'},
-    {t:'제로 투 원',a:'피터 틸',c:'제품·전략',why:'좁게 시작해 지배한다.',
+    {t:'제로 투 원',isbn:'9788947529877',a:'피터 틸',c:'제품·전략',why:'좁게 시작해 지배한다.',
       learn:'0→1의 독점적 가치, 작은 시장을 확실히 장악한 뒤 확장하는 비치헤드 전략.',
       apply:'DrawX GTM에서 "좁고 뾰족한 교두보(중견 제조사)"부터 장악해 확장하는 전략을 설계했습니다.'},
     {t:'훅 Hooked',a:'니르 이얄',c:'그로스·데이터',why:'습관을 설계한다.',
@@ -1820,25 +1820,25 @@ route();
     {t:'도시는 무엇으로 사는가',a:'유현준',c:'인간·통찰',why:'시스템을 읽는다.',
       learn:'도시라는 복잡한 시스템이 살아 움직이는 원리.',
       apply:'플랫폼을 하나의 생태계로 보고 구조와 흐름을 설계하는 관점을 얻었습니다.'},
-    {t:'지적자본론',a:'마스다 무네아키',c:'제품·전략',why:'모든 것은 기획이다.',
+    {t:'지적자본론',isbn:'9788937432231',a:'마스다 무네아키',c:'제품·전략',why:'모든 것은 기획이다.',
       learn:'비즈니스의 본질은 고객 가치를 제안하는 기획(디자인)이라는 철학.',
       apply:'기획자로서 항상 고객 관점의 가치부터 설계하는 원칙으로 삼았습니다.'},
     {t:'AI & UX',a:'개빈 루 외',c:'제품·전략',why:'AI일수록 UX가 핵심이다.',
       learn:'AI의 성능보다, 사용자가 신뢰하고 이해할 수 있는 경험이 제품의 성패를 가른다는 관점.',
       apply:'DrawX·생성형 AI 제품에서 모델 정확도만이 아니라 결과의 설명가능성과 사용 흐름을 함께 설계했습니다.'},
-    {t:'언카피어블',a:'짐 매켈비',c:'제품·전략',why:'따라 할 수 없는 해자를 만든다.',
+    {t:'언카피어블',isbn:'9788901245676',a:'짐 매켈비',c:'제품·전략',why:'따라 할 수 없는 해자를 만든다.',
       learn:'경쟁자가 복제할 수 없는 것은 기능 하나가 아니라, 서로 얽힌 혁신 스택(구조)이라는 통찰.',
       apply:'신제품 전략에서 단일 기능이 아니라 데이터·워크플로우·도메인 결합으로 방어 가능한 포지셔닝을 설계했습니다.'},
-    {t:'(사용자를) 생각하게 하지마!',a:'스티브 크룩',c:'제품·전략',why:'고민하게 만들면 진다.',
+    {t:'(사용자를) 생각하게 하지마!',isbn:'9788966261215',a:'스티브 크룩',c:'제품·전략',why:'고민하게 만들면 진다.',
       learn:'사용자는 화면을 읽지 않고 훑는다 — 직관적으로 자명한 UI가 최고의 UX라는 원칙.',
       apply:'화면설계에서 라벨·내비게이션·행동 유도를 자명하게 만드는 것을 기획 기본 원칙으로 삼았습니다.'},
-    {t:'플랫폼 레볼루션',a:'제프리 파커 외',c:'제품·전략',why:'파이프라인에서 플랫폼으로.',
+    {t:'플랫폼 레볼루션',isbn:'9788960515987',a:'제프리 파커 외',c:'제품·전략',why:'파이프라인에서 플랫폼으로.',
       learn:'양면 시장의 네트워크 효과와 상호작용 설계가 플랫폼 가치의 핵심이라는 프레임.',
       apply:'채용 플랫폼의 구직자·기업 양면을 잇는 매칭·전환 구조를 설계하는 사고의 토대가 됐습니다.'},
     {t:'마이크로카피',a:'킨너렛 이프라',c:'그로스·데이터',why:'한 문장이 전환을 바꾼다.',
       learn:'버튼·안내문·에러 메시지 같은 작은 문구가 신뢰와 전환율을 좌우한다는 점.',
       apply:'B2C 앱 퍼널에서 카피 하나하나를 실험 대상으로 삼아 전환율 개선에 반영했습니다.'},
-    {t:'판교의 젊은 기획자들',a:'이미준(도그냥)',c:'제품·전략',why:'현장 기획자의 언어.',
+    {t:'판교의 젊은 기획자들',isbn:'9791191439014',a:'이미준(도그냥)',c:'제품·전략',why:'현장 기획자의 언어.',
       learn:'국내 IT 현장에서 기획자가 실제로 부딪히는 일과 성장 경로에 대한 생생한 레퍼런스.',
       apply:'기획팀 온보딩·육성 프로그램을 설계할 때 현업 눈높이의 성장 로드맵으로 참고했습니다.'},
     {t:'디자이너의 생각법: 시프트',a:'이상인',c:'인간·통찰',why:'관점을 이동시킨다.',
@@ -1968,9 +1968,9 @@ route();
   function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 
   // filter tags
-  var active='전체';
+  var active='제품·전략';
   CATS.forEach(function(cat){
-    var b=document.createElement('button'); b.className='bk-tag'+(cat==='전체'?' on':''); b.textContent=cat;
+    var b=document.createElement('button'); b.className='bk-tag'+(cat===active?' on':''); b.textContent=cat;
     b.addEventListener('click',function(){ active=cat; tagsEl.querySelectorAll('.bk-tag').forEach(function(x){x.classList.toggle('on',x.textContent===cat);}); render(); });
     tagsEl.appendChild(b);
   });
@@ -1979,7 +1979,7 @@ route();
   function colorFor(bk){ var h=0,t=(bk.t||''); for(var i=0;i<t.length;i++){h=(h*31+t.charCodeAt(i))>>>0;} return PALETTE[h%PALETTE.length]; }
   function coverInner(bk,cls){
     var c=colorFor(bk);
-    return '<div class="'+cls+'" style="--c:'+c+'" data-q="'+esc(bk.t+' '+bk.a)+'">'
+    return '<div class="'+cls+'" style="--c:'+c+'" data-q="'+esc(bk.t+' '+bk.a)+'" data-isbn="'+esc(bk.isbn||'')+'">'
       +'<img class="bk-img" alt="" aria-hidden="true">'
       +'<span class="bk-cat-mini">'+esc((bk.c||'').split('·')[0])+'</span>'
       +'<span class="bk-btm"><span class="bk-t">'+esc(bk.t)+'</span>'
@@ -2018,27 +2018,50 @@ route();
     ov.classList.add('on');
   }
 
-  // Designed jacket covers always render. On top of that we try, best-effort,
-  // to fetch the real cover from Google Books in the VISITOR's browser and
-  // overlay it only when it actually loads — so nothing is ever blank.
+  // Designed jacket covers always render. On top of that we load the REAL cover
+  // in the visitor's browser: a hardcoded ISBN (or one looked up via Google Books)
+  // points to the Kyobo cover CDN — which carries Korean book covers Google often
+  // lacks — with a fallback chain, so nothing is ever blank.
+  function kyoboUrl(isbn){ return 'https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/'+isbn+'.jpg'; }
+  function gbIsbnUrl(isbn){ return 'https://books.google.com/books/content?vid=ISBN'+isbn+'&printsec=frontcover&img=1&zoom=1'; }
+  function tryUrls(holder,im,urls){
+    var i=0;
+    function next(){
+      if(i>=urls.length) return; // give up — designed cover stays visible
+      var u=urls[i++];
+      im.onload=function(){ if(im.naturalWidth>2){ holder.classList.add('has-img'); } else { next(); } };
+      im.onerror=next;
+      im.referrerPolicy='no-referrer';
+      im.src=u;
+    }
+    next();
+  }
   var COVER_CACHE={};
   function loadCovers(root){
     var els=root.querySelectorAll('[data-q] .bk-img'); if(!els.length) return;
     [].forEach.call(els, function(im){
-      var holder=im.parentNode; var q=holder.getAttribute('data-q'); if(!q) return;
+      var holder=im.parentNode; var q=holder.getAttribute('data-q'); var isbn=holder.getAttribute('data-isbn');
+      if(!q) return;
       if(COVER_CACHE[q]==='none') return;
-      if(COVER_CACHE[q]){ setImg(holder,im,COVER_CACHE[q]); return; }
+      if(COVER_CACHE[q]){ tryUrls(holder,im,COVER_CACHE[q]); return; }
+      if(isbn){ var us=[kyoboUrl(isbn),gbIsbnUrl(isbn)]; COVER_CACHE[q]=us; tryUrls(holder,im,us); return; }
       fetch('https://www.googleapis.com/books/v1/volumes?q='+encodeURIComponent(q)+'&maxResults=3&country=US')
         .then(function(r){return r.ok?r.json():null;}).then(function(d){
-          var items=(d&&d.items)||[]; var url='';
-          for(var i=0;i<items.length&&!url;i++){ var il=items[i].volumeInfo&&items[i].volumeInfo.imageLinks; if(il) url=il.thumbnail||il.smallThumbnail||''; }
-          if(!url){ COVER_CACHE[q]='none'; return; }
-          url=url.replace(/^http:/,'https:').replace('&edge=curl','');
-          COVER_CACHE[q]=url; setImg(holder,im,url);
+          var items=(d&&d.items)||[]; var found='', img='';
+          for(var i=0;i<items.length&&!found;i++){
+            var vi=items[i].volumeInfo||{};
+            var ids=vi.industryIdentifiers||[];
+            for(var j=0;j<ids.length;j++){ if(ids[j].type==='ISBN_13'){ found=ids[j].identifier; break; } }
+            if(!img && vi.imageLinks){ img=(vi.imageLinks.thumbnail||vi.imageLinks.smallThumbnail||''); }
+          }
+          var urls=[];
+          if(found){ urls.push(kyoboUrl(found)); urls.push(gbIsbnUrl(found)); }
+          if(img){ urls.push(img.replace(/^http:/,'https:').replace('&edge=curl','')); }
+          if(!urls.length){ COVER_CACHE[q]='none'; return; }
+          COVER_CACHE[q]=urls; tryUrls(holder,im,urls);
         }).catch(function(){ COVER_CACHE[q]='none'; });
     });
   }
-  function setImg(holder,im,url){ im.referrerPolicy='no-referrer'; im.onload=function(){ if(im.naturalWidth>2) holder.classList.add('has-img'); }; im.onerror=function(){}; im.src=url; }
 
   render();
 })();

@@ -118,24 +118,6 @@
   /* COMPETENCY */
   .comp{background:var(--bg-soft)}
   .voices{background:var(--bg-soft)}
-  .books{padding:56px 0}
-  .books .sec-sub{margin-bottom:0}
-  .bk-marquee{margin-top:22px;overflow:hidden;position:relative;-webkit-mask:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
-  .bk-track{display:flex;gap:13px;width:max-content;animation:bkroll 64s linear infinite}
-  .bk-marquee:hover .bk-track{animation-play-state:paused}
-  @keyframes bkroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-  .bk-card{flex:none;width:82px}
-  .bk-cover{position:relative;height:116px;border-radius:6px;background:var(--c,#2f3a44);box-shadow:0 5px 14px rgba(0,0,0,.16);overflow:hidden;display:flex;align-items:flex-start;padding:10px 8px 8px 12px;transition:transform .2s}
-  .bk-cover::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:rgba(0,0,0,.3);z-index:2}
-  .bk-cover::after{content:'';position:absolute;left:5px;top:0;bottom:0;width:2px;background:rgba(255,255,255,.13);z-index:2}
-  .bk-cover.has-img::before,.bk-cover.has-img::after{opacity:0}
-  .bk-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s;z-index:1}
-  .bk-cover.has-img .bk-img{opacity:1}
-  .bk-cover.has-img .bk-t{opacity:0}
-  .bk-t{position:relative;z-index:2;font-size:10px;font-weight:700;line-height:1.3;color:#fff;letter-spacing:-.02em;word-break:keep-all}
-  .bk-card:hover .bk-cover{transform:translateY(-4px)}
-  .bk-cap{margin-top:6px;font-size:10px;color:var(--ink-3);text-align:center;line-height:1.3;min-height:12px}
-  @media(prefers-reduced-motion:reduce){.bk-track{animation:none;flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px}}
   .vgrid{columns:3;column-gap:16px;margin-top:34px}
   @media(max-width:900px){.vgrid{columns:2}}
   @media(max-width:600px){.vgrid{columns:1}}
@@ -744,9 +726,10 @@
     <div class="sec-head reveal" style="margin-bottom:0">
       <div class="sec-kicker">Bookshelf</div>
       <h2 class="sec-title">제품을 만들며 읽은 책</h2>
-      <p class="sec-sub">생각과 일하는 방식의 기반이 된 프로덕트·그로스·리더십·인간 이해 도서들입니다.</p>
+      <p class="sec-sub">클릭하면 각 책에서 배운 점과 제품에 적용한 점을 볼 수 있어요.</p>
     </div>
-    <div class="bk-marquee reveal"><div class="bk-track"><div class="bk-card" title="인스파이어드 · 마티 케이건"><div class="bk-cover" data-q="인스파이어드 마티 케이건" style="--c:#2f3a44"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">인스파이어드</span></div><div class="bk-cap"><span class="bk-au">마티 케이건</span></div></div><div class="bk-card" title="프로덕트 오너"><div class="bk-cover" data-q="프로덕트 오너" style="--c:#33403a"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">프로덕트 오너</span></div><div class="bk-cap"></div></div><div class="bk-card" title="제로 투 원 · 피터 틸"><div class="bk-cover" data-q="제로 투 원 피터 틸" style="--c:#403631"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">제로 투 원</span></div><div class="bk-cap"><span class="bk-au">피터 틸</span></div></div><div class="bk-card" title="훅 Hooked · 니르 이얄"><div class="bk-cover" data-q="훅 Hooked 니르 이얄" style="--c:#3a3140"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">훅 Hooked</span></div><div class="bk-cap"><span class="bk-au">니르 이얄</span></div></div><div class="bk-card" title="린 분석 · 알리스테어 크롤"><div class="bk-cover" data-q="린 분석 알리스테어 크롤" style="--c:#2e3b3f"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">린 분석</span></div><div class="bk-cap"><span class="bk-au">알리스테어 크롤</span></div></div><div class="bk-card" title="그로스 해커 · 라이언 홀리데이"><div class="bk-cover" data-q="그로스 해커 라이언 홀리데이" style="--c:#3f3a2f"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">그로스 해커</span></div><div class="bk-cap"><span class="bk-au">라이언 홀리데이</span></div></div><div class="bk-card" title="실리콘밸리의 팀장들 · 킴 스콧"><div class="bk-cover" data-q="실리콘밸리의 팀장들 킴 스콧" style="--c:#38343f"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">실리콘밸리의 팀장들</span></div><div class="bk-cap"><span class="bk-au">킴 스콧</span></div></div><div class="bk-card" title="어서 와, 리더는 처음이지?"><div class="bk-cover" data-q="어서 와, 리더는 처음이지?" style="--c:#2f3a44"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">어서 와, 리더는 처음이지?</span></div><div class="bk-cap"></div></div><div class="bk-card" title="감정은 어떻게 만들어지는가 · 리사 배럿"><div class="bk-cover" data-q="감정은 어떻게 만들어지는가 리사 배럿" style="--c:#33403a"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">감정은 어떻게 만들어지는가</span></div><div class="bk-cap"><span class="bk-au">리사 배럿</span></div></div><div class="bk-card" title="딱딱한 심리학"><div class="bk-cover" data-q="딱딱한 심리학" style="--c:#403631"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">딱딱한 심리학</span></div><div class="bk-cap"></div></div><div class="bk-card" title="인간 인터넷"><div class="bk-cover" data-q="인간 인터넷" style="--c:#3a3140"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">인간 인터넷</span></div><div class="bk-cap"></div></div><div class="bk-card" title="인간의 발명"><div class="bk-cover" data-q="인간의 발명" style="--c:#2e3b3f"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">인간의 발명</span></div><div class="bk-cap"></div></div><div class="bk-card" title="예술적 상상력"><div class="bk-cover" data-q="예술적 상상력" style="--c:#3f3a2f"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">예술적 상상력</span></div><div class="bk-cap"></div></div><div class="bk-card" title="어디서 살 것인가 · 유현준"><div class="bk-cover" data-q="어디서 살 것인가 유현준" style="--c:#38343f"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">어디서 살 것인가</span></div><div class="bk-cap"><span class="bk-au">유현준</span></div></div><div class="bk-card" title="도시는 무엇으로 사는가 · 유현준"><div class="bk-cover" data-q="도시는 무엇으로 사는가 유현준" style="--c:#2f3a44"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">도시는 무엇으로 사는가</span></div><div class="bk-cap"><span class="bk-au">유현준</span></div></div><div class="bk-card" title="지적자본론 · 마스다 무네아키"><div class="bk-cover" data-q="지적자본론 마스다 무네아키" style="--c:#33403a"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">지적자본론</span></div><div class="bk-cap"><span class="bk-au">마스다 무네아키</span></div></div><div class="bk-card" title="인스파이어드 · 마티 케이건"><div class="bk-cover" data-q="인스파이어드 마티 케이건" style="--c:#2f3a44"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">인스파이어드</span></div><div class="bk-cap"><span class="bk-au">마티 케이건</span></div></div><div class="bk-card" title="프로덕트 오너"><div class="bk-cover" data-q="프로덕트 오너" style="--c:#33403a"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">프로덕트 오너</span></div><div class="bk-cap"></div></div><div class="bk-card" title="제로 투 원 · 피터 틸"><div class="bk-cover" data-q="제로 투 원 피터 틸" style="--c:#403631"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">제로 투 원</span></div><div class="bk-cap"><span class="bk-au">피터 틸</span></div></div><div class="bk-card" title="훅 Hooked · 니르 이얄"><div class="bk-cover" data-q="훅 Hooked 니르 이얄" style="--c:#3a3140"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">훅 Hooked</span></div><div class="bk-cap"><span class="bk-au">니르 이얄</span></div></div><div class="bk-card" title="린 분석 · 알리스테어 크롤"><div class="bk-cover" data-q="린 분석 알리스테어 크롤" style="--c:#2e3b3f"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">린 분석</span></div><div class="bk-cap"><span class="bk-au">알리스테어 크롤</span></div></div><div class="bk-card" title="그로스 해커 · 라이언 홀리데이"><div class="bk-cover" data-q="그로스 해커 라이언 홀리데이" style="--c:#3f3a2f"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">그로스 해커</span></div><div class="bk-cap"><span class="bk-au">라이언 홀리데이</span></div></div><div class="bk-card" title="실리콘밸리의 팀장들 · 킴 스콧"><div class="bk-cover" data-q="실리콘밸리의 팀장들 킴 스콧" style="--c:#38343f"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">실리콘밸리의 팀장들</span></div><div class="bk-cap"><span class="bk-au">킴 스콧</span></div></div><div class="bk-card" title="어서 와, 리더는 처음이지?"><div class="bk-cover" data-q="어서 와, 리더는 처음이지?" style="--c:#2f3a44"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">어서 와, 리더는 처음이지?</span></div><div class="bk-cap"></div></div><div class="bk-card" title="감정은 어떻게 만들어지는가 · 리사 배럿"><div class="bk-cover" data-q="감정은 어떻게 만들어지는가 리사 배럿" style="--c:#33403a"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">감정은 어떻게 만들어지는가</span></div><div class="bk-cap"><span class="bk-au">리사 배럿</span></div></div><div class="bk-card" title="딱딱한 심리학"><div class="bk-cover" data-q="딱딱한 심리학" style="--c:#403631"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">딱딱한 심리학</span></div><div class="bk-cap"></div></div><div class="bk-card" title="인간 인터넷"><div class="bk-cover" data-q="인간 인터넷" style="--c:#3a3140"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">인간 인터넷</span></div><div class="bk-cap"></div></div><div class="bk-card" title="인간의 발명"><div class="bk-cover" data-q="인간의 발명" style="--c:#2e3b3f"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">인간의 발명</span></div><div class="bk-cap"></div></div><div class="bk-card" title="예술적 상상력"><div class="bk-cover" data-q="예술적 상상력" style="--c:#3f3a2f"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">예술적 상상력</span></div><div class="bk-cap"></div></div><div class="bk-card" title="어디서 살 것인가 · 유현준"><div class="bk-cover" data-q="어디서 살 것인가 유현준" style="--c:#38343f"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">어디서 살 것인가</span></div><div class="bk-cap"><span class="bk-au">유현준</span></div></div><div class="bk-card" title="도시는 무엇으로 사는가 · 유현준"><div class="bk-cover" data-q="도시는 무엇으로 사는가 유현준" style="--c:#2f3a44"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">도시는 무엇으로 사는가</span></div><div class="bk-cap"><span class="bk-au">유현준</span></div></div><div class="bk-card" title="지적자본론 · 마스다 무네아키"><div class="bk-cover" data-q="지적자본론 마스다 무네아키" style="--c:#33403a"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">지적자본론</span></div><div class="bk-cap"><span class="bk-au">마스다 무네아키</span></div></div></div></div>
+    <div class="bk-tags" id="bkTags"></div>
+    <div class="bk-grid" id="bkGrid"></div>
   </div>
 </section>
 
@@ -1788,21 +1771,175 @@ route();
 </script>
 <script>
 (function(){
-  function load(){
-    var covers=document.querySelectorAll('#books .bk-cover[data-q]'); if(!covers.length) return;
-    var groups={}; covers.forEach(function(c){var q=c.getAttribute('data-q');(groups[q]=groups[q]||[]).push(c);});
-    Object.keys(groups).forEach(function(q){
-      fetch('https://www.googleapis.com/books/v1/volumes?q='+encodeURIComponent(q)+'&maxResults=1&country=KR')
-      .then(function(r){return r.json();}).then(function(d){
-        var it=d&&d.items&&d.items[0]; var il=it&&it.volumeInfo&&it.volumeInfo.imageLinks;
-        var url=il&&(il.thumbnail||il.smallThumbnail); if(!url) return;
-        url=url.replace(/^http:/,'https:').replace('&edge=curl','');
-        groups[q].forEach(function(c){var im=c.querySelector('.bk-img'); if(!im) return; im.onload=function(){c.classList.add('has-img');}; im.src=url;});
-      }).catch(function(){});
+  var CATC={ '제품·전략':'#2f3a44', '그로스·데이터':'#2f4039', '리더십·팀':'#3f342f', '인간·통찰':'#38303f' };
+  var BOOKS=[
+    {t:'인스파이어드',a:'마티 케이건',c:'제품·전략',why:'아웃풋이 아니라 아웃컴.',
+      learn:'기능을 만들기 전에 "왜 만드는가"와 성과 가설을 먼저 세우고, Product Discovery(인터뷰·프로토타입)로 검증해야 한다는 것.',
+      apply:'DrawX·Annotation에서 기능 나열 대신 고객 문제 정의 → 가설 → 발견 → 검증 프로세스를 제품 기획의 기본으로 세웠습니다.'},
+    {t:'프로덕트 오너',a:'',c:'제품·전략',why:'우선순위가 곧 전략.',
+      learn:'PO의 역할과 책임 — 무엇을 안 할지 정하고, 이해관계자를 조율하며 오너십으로 끌고 가는 것.',
+      apply:'PMF 싱크업에서 사업·개발 사이 우선순위를 합의하고 릴리즈 방향을 조율하는 오너십으로 적용했습니다.'},
+    {t:'제로 투 원',a:'피터 틸',c:'제품·전략',why:'좁게 시작해 지배한다.',
+      learn:'0→1의 독점적 가치, 작은 시장을 확실히 장악한 뒤 확장하는 비치헤드 전략.',
+      apply:'DrawX GTM에서 "좁고 뾰족한 교두보(중견 제조사)"부터 장악해 확장하는 전략을 설계했습니다.'},
+    {t:'훅 Hooked',a:'니르 이얄',c:'그로스·데이터',why:'습관을 설계한다.',
+      learn:'트리거 → 행동 → 가변보상 → 투자로 이어지는 습관 형성 루프.',
+      apply:'B2C 채용앱에서 재방문·습관을 유도하는 넛지를 설계해 회원 전환율 4.5배를 만들었습니다.'},
+    {t:'린 분석',a:'알리스테어 크롤',c:'그로스·데이터',why:'지금 가장 중요한 한 지표.',
+      learn:'단계별 OMTM(One Metric That Matters), 허무지표를 경계하고 행동가능한 지표에 집중.',
+      apply:'퍼널을 분석해 핵심 지표를 정의·모니터링하며 매칭 성공률을 1%→6%로 끌어올렸습니다.'},
+    {t:'그로스 해커',a:'라이언 홀리데이',c:'그로스·데이터',why:'제품과 성장은 하나.',
+      learn:'마케팅이 아니라 제품 자체가 성장 엔진 — 실험 기반으로 성장 지점을 찾는다.',
+      apply:'데이터 드리븐 가설 검증 문화를 팀에 구축해 반복 실험으로 지표를 개선했습니다.'},
+    {t:'실리콘밸리의 팀장들',a:'킴 스콧',c:'리더십·팀',why:'솔직하되 배려있게.',
+      learn:'Radical Candor — 개인적 관심과 직접적 도전을 동시에 하는 피드백.',
+      apply:'제품 스쿼드를 리딩하며 솔직하지만 배려있는 피드백으로 신뢰를 쌓았습니다.'},
+    {t:'어서 와, 리더는 처음이지?',a:'',c:'리더십·팀',why:'처음 리더의 마인드셋.',
+      learn:'실무자에서 리더로 넘어갈 때의 시행착오와 관점 전환.',
+      apply:'기획팀 신입 육성·중간관리자 역할에서 코칭·동기부여로 온보딩을 가속했습니다.'},
+    {t:'감정은 어떻게 만들어지는가',a:'리사 배럿',c:'인간·통찰',why:'감정은 구성된다.',
+      learn:'감정과 인지가 맥락 속에서 구성된다는 뇌과학적 관점.',
+      apply:'사용자 리서치에서 표면 행동 이면의 맥락·감정을 해석해 진짜 문제를 정의했습니다.'},
+    {t:'딱딱한 심리학',a:'',c:'인간·통찰',why:'행동 뒤의 심리.',
+      learn:'인지 편향과 의사결정의 심리 메커니즘.',
+      apply:'UX·넛지 설계에 심리 원리를 반영해 사용자의 자연스러운 행동을 유도했습니다.'},
+    {t:'인간 인터넷',a:'',c:'인간·통찰',why:'기술은 사람을 잇는다.',
+      learn:'기술과 인간 연결의 방향성.',
+      apply:'"AI와 가치를 잇는다" — AI를 사람 중심으로 연결하는 제품 관점의 기반이 됐습니다.'},
+    {t:'인간의 발명',a:'',c:'인간·통찰',why:'본질을 파고든다.',
+      learn:'인간 본성과 문명에 대한 통찰.',
+      apply:'5 Why로 현상의 본질을 파고드는 문제 정의 사고의 토대가 됐습니다.'},
+    {t:'예술적 상상력',a:'',c:'인간·통찰',why:'너머를 본다.',
+      learn:'보이는 것 너머를 보는 창의적 관점.',
+      apply:'문제를 새로운 각도로 재정의하는 발산적 사고에 활용했습니다.'},
+    {t:'어디서 살 것인가',a:'유현준',c:'인간·통찰',why:'공간이 행동을 만든다.',
+      learn:'공간이 사람의 경험과 행동을 설계한다는 관점.',
+      apply:'사용자 여정·환경이 행동을 유도한다는 시각을 UX 설계에 적용했습니다.'},
+    {t:'도시는 무엇으로 사는가',a:'유현준',c:'인간·통찰',why:'시스템을 읽는다.',
+      learn:'도시라는 복잡한 시스템이 살아 움직이는 원리.',
+      apply:'플랫폼을 하나의 생태계로 보고 구조와 흐름을 설계하는 관점을 얻었습니다.'},
+    {t:'지적자본론',a:'마스다 무네아키',c:'제품·전략',why:'모든 것은 기획이다.',
+      learn:'비즈니스의 본질은 고객 가치를 제안하는 기획(디자인)이라는 철학.',
+      apply:'기획자로서 항상 고객 관점의 가치부터 설계하는 원칙으로 삼았습니다.'}
+  ];
+  var CATS=['전체','제품·전략','그로스·데이터','리더십·팀','인간·통찰'];
+
+  var css=''
+  +'.books{padding:56px 0}'
+  +'.books .sec-sub{margin-bottom:0}'
+  +'.bk-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}'
+  +'.bk-tag{font-size:12.5px;font-weight:600;color:var(--ink-2);background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;transition:all .15s}'
+  +'.bk-tag:hover{border-color:var(--ink-3)}'
+  +'.bk-tag.on{background:var(--ink);color:#fff;border-color:var(--ink)}'
+  +'.bk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:16px 13px;margin-top:22px}'
+  +'.bk-card{cursor:pointer;text-align:left}'
+  +'.bk-cover{position:relative;aspect-ratio:3/4.3;border-radius:6px;background:var(--c,#2f3a44);box-shadow:0 5px 14px rgba(0,0,0,.16);overflow:hidden;display:flex;align-items:flex-start;padding:10px 8px 8px 12px;transition:transform .2s,box-shadow .2s}'
+  +'.bk-card:hover .bk-cover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}'
+  +'.bk-cover::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:rgba(0,0,0,.3);z-index:2}'
+  +'.bk-cover::after{content:"";position:absolute;left:5px;top:0;bottom:0;width:2px;background:rgba(255,255,255,.13);z-index:2}'
+  +'.bk-cover.has-img::before,.bk-cover.has-img::after{opacity:0}'
+  +'.bk-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s;z-index:1}'
+  +'.bk-cover.has-img .bk-img{opacity:1}'
+  +'.bk-cover.has-img .bk-t{opacity:0}'
+  +'.bk-t{position:relative;z-index:2;font-size:10px;font-weight:700;line-height:1.3;color:#fff;letter-spacing:-.02em;word-break:keep-all}'
+  +'.bk-cap{margin-top:7px;font-size:11px;font-weight:600;color:var(--ink-2);line-height:1.3;word-break:keep-all}'
+  +'.bk-cap .bk-au{display:block;font-weight:500;font-size:10px;color:var(--ink-3);margin-top:1px}'
+  +'.bkm-ov{position:fixed;inset:0;z-index:200;background:rgba(18,18,18,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:22px}'
+  +'.bkm-ov.on{display:flex;animation:bkmin .18s ease}'
+  +'@keyframes bkmin{from{opacity:0}to{opacity:1}}'
+  +'.bkm{background:#fff;border-radius:16px;max-width:460px;width:100%;max-height:88vh;overflow:auto;box-shadow:0 24px 64px rgba(0,0,0,.3)}'
+  +'.bkm-top{display:flex;gap:16px;padding:22px 22px 16px}'
+  +'.bkm-cover{flex:none;width:92px;aspect-ratio:3/4.3;border-radius:7px;position:relative;overflow:hidden;background:var(--c,#2f3a44);box-shadow:0 6px 16px rgba(0,0,0,.2);display:flex;align-items:flex-start;padding:11px 9px 9px 13px}'
+  +'.bkm-cover::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:rgba(0,0,0,.3);z-index:2}'
+  +'.bkm-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}'
+  +'.bkm-cover .bk-t{font-size:11px}'
+  +'.bkm-hd{flex:1;min-width:0}'
+  +'.bkm-cat{display:inline-block;font-size:11px;font-weight:700;color:var(--point);margin-bottom:7px}'
+  +'.bkm-ti{font-size:18px;font-weight:800;letter-spacing:-.02em;line-height:1.3;color:var(--ink)}'
+  +'.bkm-au{font-size:12.5px;color:var(--ink-3);margin-top:4px}'
+  +'.bkm-why{font-size:13px;color:var(--ink-2);margin-top:10px;font-style:italic}'
+  +'.bkm-body{padding:4px 22px 22px}'
+  +'.bkm-sec{border-top:1px solid var(--line-2);padding-top:14px;margin-top:14px}'
+  +'.bkm-l{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}'
+  +'.bkm-sec.apply .bkm-l{color:var(--point)}'
+  +'.bkm-tx{font-size:13.5px;line-height:1.65;color:var(--ink-2)}'
+  +'.bkm-x{position:sticky;top:0;float:right;margin:12px 12px 0 0;cursor:pointer;background:none;border:none;font-size:22px;color:var(--ink-3);line-height:1;z-index:3}'
+  +'.bkm-x:hover{color:var(--ink)}'
+  +'@media(max-width:520px){.bkm-top{flex-direction:column}.bkm-cover{width:80px}}';
+  var st=document.createElement('style'); st.textContent=css; document.head.appendChild(st);
+
+  var grid=document.getElementById('bkGrid'), tagsEl=document.getElementById('bkTags');
+  if(!grid||!tagsEl) return;
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  // filter tags
+  var active='전체';
+  CATS.forEach(function(cat){
+    var b=document.createElement('button'); b.className='bk-tag'+(cat==='전체'?' on':''); b.textContent=cat;
+    b.addEventListener('click',function(){ active=cat; tagsEl.querySelectorAll('.bk-tag').forEach(function(x){x.classList.toggle('on',x.textContent===cat);}); render(); });
+    tagsEl.appendChild(b);
+  });
+
+  function coverInner(bk,cls){
+    var c=CATC[bk.c]||'#2f3a44';
+    return '<div class="'+cls+'" style="--c:'+c+'" data-q="'+esc(bk.t+' '+bk.a)+'"><img class="bk-img" alt="" aria-hidden="true"><span class="bk-t">'+esc(bk.t)+'</span></div>';
+  }
+  function render(){
+    grid.innerHTML='';
+    BOOKS.filter(function(b){return active==='전체'||b.c===active;}).forEach(function(bk){
+      var card=document.createElement('div'); card.className='bk-card';
+      card.innerHTML=coverInner(bk,'bk-cover')+'<div class="bk-cap">'+esc(bk.t)+(bk.a?'<span class="bk-au">'+esc(bk.a)+'</span>':'')+'</div>';
+      card.addEventListener('click',function(){ openModal(bk); });
+      grid.appendChild(card);
+    });
+    loadCovers(grid);
+  }
+
+  // modal
+  var ov=document.createElement('div'); ov.className='bkm-ov';
+  ov.innerHTML='<div class="bkm"><button class="bkm-x" aria-label="닫기">&times;</button><div class="bkm-top"></div><div class="bkm-body"></div></div>';
+  document.body.appendChild(ov);
+  ov.addEventListener('click',function(e){ if(e.target===ov) close(); });
+  ov.querySelector('.bkm-x').addEventListener('click',close);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+  function close(){ ov.classList.remove('on'); }
+  function openModal(bk){
+    var c=CATC[bk.c]||'#2f3a44';
+    ov.querySelector('.bkm-top').innerHTML=
+      coverInner(bk,'bkm-cover')
+      +'<div class="bkm-hd"><span class="bkm-cat">'+esc(bk.c)+'</span><div class="bkm-ti">'+esc(bk.t)+'</div>'
+      +(bk.a?'<div class="bkm-au">'+esc(bk.a)+'</div>':'')
+      +(bk.why?'<div class="bkm-why">“'+esc(bk.why)+'”</div>':'')+'</div>';
+    ov.querySelector('.bkm-body').innerHTML=
+      '<div class="bkm-sec"><div class="bkm-l">배운 점</div><div class="bkm-tx">'+esc(bk.learn)+'</div></div>'
+      +'<div class="bkm-sec apply"><div class="bkm-l">제품에 적용한 점</div><div class="bkm-tx">'+esc(bk.apply)+'</div></div>';
+    loadCovers(ov);
+    ov.classList.add('on');
+  }
+
+  // cover loading (client-side, best effort)
+  var COVER_CACHE={};
+  function loadCovers(root){
+    var els=root.querySelectorAll('[data-q] .bk-img'); if(!els.length) return;
+    [].forEach.call(els, function(im){
+      var holder=im.parentNode; var q=holder.getAttribute('data-q'); if(!q) return;
+      if(COVER_CACHE[q]==='none') return;
+      if(COVER_CACHE[q]){ setImg(holder,im,COVER_CACHE[q]); return; }
+      fetch('https://www.googleapis.com/books/v1/volumes?q='+encodeURIComponent(q)+'&maxResults=1')
+        .then(function(r){return r.json();}).then(function(d){
+          var it=d&&d.items&&d.items[0]; var il=it&&it.volumeInfo&&it.volumeInfo.imageLinks;
+          var url=il&&(il.thumbnail||il.smallThumbnail);
+          if(!url){ COVER_CACHE[q]='none'; return; }
+          url=url.replace(/^http:/,'https:').replace('&edge=curl','');
+          COVER_CACHE[q]=url; setImg(holder,im,url);
+        }).catch(function(){ COVER_CACHE[q]='none'; });
     });
   }
-  if(document.readyState!=='loading') load(); else document.addEventListener('DOMContentLoaded',load);
+  function setImg(holder,im,url){ im.referrerPolicy='no-referrer'; im.onload=function(){ holder.classList.add('has-img'); }; im.src=url; }
+
+  render();
 })();
+
 </script>
 </body>
 </html>

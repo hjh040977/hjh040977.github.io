@@ -373,7 +373,7 @@
   .d-starmap .sm{position:relative;background:var(--bg-softer);border:1px solid var(--line);border-top:3px solid var(--sc);border-radius:14px;padding:18px 18px 18px}
   .d-starmap .sm .sb{width:30px;height:30px;border-radius:8px;background:var(--sc);color:#fff;font-weight:800;font-size:15px;display:grid;place-items:center;margin-bottom:12px}
   .d-starmap .sm .sk{font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--sc);margin-bottom:6px}
-  .d-starmap .sm .sx{font-size:13.5px;color:var(--ink-2);line-height:1.55;font-weight:500}
+  .d-starmap .sm .sx{font-size:13.5px;color:var(--ink-2);line-height:1.55;font-weight:500;white-space:pre-line;word-break:keep-all}
   @media(max-width:820px){.d-starmap{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:460px){.d-starmap{grid-template-columns:1fr}}
   /* STAR section header */
@@ -965,7 +965,7 @@ const PROJECTS = {
       {t:'img',k:'quoteflow',cap:'도면 → 견적 자동화 분석 · 제품화 에이전트 발굴 (실제 도면 기준 · 금액은 가정단가 예시)'},
       {t:'group',h:'제품화 후보 3대 에이전트',items:['도면 읽기 자동화 — VLM 기반 재질·치수·중량·용접부 자동 추출 + No-code 커스텀 추출','가격표 매칭 자동화 — 추출 스펙으로 단가(Index) 자동 조회 + 단가·참조 데이터 시스템화','적산 로직 자동화 — AI가 기준 파일을 읽고 원가 규칙을 구성 + 견적 Agent 스토어(Skill·API)']}
     ],
-    star:{s:'도면 중심 의사결정이 사람 경험에 의존 — 발견·해석·소통·관리 4대 고통',t:'도면을 지능형 자산으로 바꾸는 AI 비교·분석 플랫폼을 GTM부터 설계',a:'[전략] 제공 모델·포지셔닝·가격 정책·커버리지 맵·PMF 싱크업 · [실행] 기능 우선순위·제품 컨셉·프로토타입·릴리즈 로드맵·스프린트·성숙도 기준까지 0→1 리딩',r:'검토 시간 80%+ 단축, AW2026 발표, Runway 제품군 연동 확장'},
+    star:{s:'도면 중심 의사결정이 사람 경험에 의존 — 발견·해석·소통·관리 4대 고통',t:'도면을 지능형 자산으로 바꾸는 AI 비교·분석 플랫폼을 GTM부터 설계',a:'[전략] 제공 모델 · 포지셔닝 · 가격 정책 · 커버리지 맵 · PMF 싱크업\n[실행] 기능 우선순위 · 제품 컨셉 · 프로토타입 · 릴리즈 로드맵 · 스프린트 · 성숙도 기준까지\n→ 0→1 리딩',r:'검토 시간 80%+ 단축, AW2026 발표, Runway 제품군 연동 확장'},
     goals:[],
     blocks:[],
     results:['제품 전략(제공 모델·포지셔닝 맵·가격 정책·커버리지 맵)을 0→1로 수립하고 사업×PM×개발 PMF 싱크업 체계를 직접 설계·운영','에너지·중공업·정유 등 국내 대기업 제조사 다수(비공개) 등 엔터프라이즈 고객 요구를 파이프라인화(30건 접수·48개 요구사항 집계)','도면 비교 및 변경 분석에 소요되던 시간 80% 이상 단축','고객사 설계 변경 실수·누락률 감소로 실질적인 품질 향상에 기여','AI 컨퍼런스(AW2026) 발표로 제품 대외 공개','기존 MLOps 운영 흐름과 유기적으로 연결되며 Runway 제품군 내 연동 확장'],

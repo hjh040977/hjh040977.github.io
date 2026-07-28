@@ -315,9 +315,11 @@
   .d-comps span{font-size:12.5px;font-weight:600;color:var(--accent-ink);background:var(--accent-soft);padding:6px 13px;border-radius:999px}
   /* gallery */
   .d-gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-  .d-gallery figure{margin:0;background:var(--bg-softer);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .d-gallery figure{margin:0;background:var(--bg-softer);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:zoom-in;transition:box-shadow .2s,border-color .2s}
+  .d-gallery figure:hover{box-shadow:var(--shadow-hover);border-color:var(--ink-3)}
   .d-gallery img{display:block;width:100%;height:auto;background:#fff}
-  .d-gallery figcaption{font-size:12.5px;color:var(--ink-3);padding:10px 14px;border-top:1px solid var(--line-2)}
+  .d-gallery figcaption{font-size:12.5px;color:var(--ink-3);padding:10px 14px;border-top:1px solid var(--line-2);display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .d-gallery .d-figzoom{font-size:11px;font-weight:650;color:var(--ink-2);white-space:nowrap}
   .d-gallery figure.wide{grid-column:1/-1}
   @media(max-width:640px){.d-gallery{grid-template-columns:1fr}}
   /* links */
@@ -1060,7 +1062,7 @@ const ALL = [
   {id:'members',cat:'Platform',name:'플랫폼 통합회원 설계·구축',period:'2022.06 ~ 2022.12',role:'PO',company:'마이다스아이티',tags:['통합회원','백오피스','플랫폼'],contrib:'통합회원 인증·권한 관리 구조 설계, 백오피스 운영 효율화'},
   {id:'b2c',cat:'B2C Growth',name:'B2C 채용 앱 100만 회원',period:'2022.05 ~ 2023.05',role:'PO',company:'마이다스아이티',tags:['B2C','신사업','앱'],product:{name:'jobda',html:'jobda<span class="lx">.</span>',url:'https://www.jobda.im/'},contrib:'앱/웹 사용자 여정 설계와 데이터 기반 개선으로 100만 회원 확보',result:'100만 회원 · 매칭률 6배',featured:true},
   {id:'b2b',cat:'B2B SaaS',name:'B2B 채용솔루션 200억 성장',period:'2021.07 ~ 2023.05',role:'PO',company:'마이다스아이티',tags:['B2B','신사업','플랫폼','SaaS'],product:{name:'Recruiter S',url:'https://h.place/product/recruiter-s'},contrib:'B2B SaaS 신제품 기획 및 출시로 매출 200억 성장 견인',result:'200억 매출 · 1,500사',featured:true},
-  {id:'process',cat:'Process',name:'기획 프로세스·협업체계 구축',period:'2021.07 ~ 2023.05',role:'PM',company:'마이다스아이티',tags:['스크럼','애자일'],contrib:'애자일·스크럼 프로세스 도입, 협업체계 및 산출물 표준화 정착',result:'애자일·스크럼 협업체계 표준화'},
+  {id:'process',cat:'Process',name:'기획 프로세스·협업체계 구축',period:'2021.07 ~ 2023.05',role:'PM',company:'마이다스아이티',tags:['스크럼','애자일','제품관리'],contrib:'애자일·스크럼 프로세스 도입, 협업체계 및 산출물 표준화 정착',result:'애자일·스크럼 협업체계 표준화'},
   {id:'isms',cat:'Product Ops',name:'SaaS 제품관리 (ISMS 인증)',period:'2019.01 ~ 2021.07',role:'PM',company:'마이다스아이티',tags:['정보보호','제품관리'],contrib:'ISMS 인증 대응, 보안·제품 관리 체계 구축'},
   {id:'realestate',cat:'CRM · 신사업',name:'디지털 분양솔루션 런칭',period:'2018.02 ~ 2018.12',role:'서비스기획',company:'마이다스아이티',tags:['신사업','CRM'],contrib:'CRM 기반 디지털 분양솔루션 출시로 신규 매출 창출'},
   {id:'etc',cat:'Web / App',name:'홈페이지·앱 기획 다수',period:'2017.08 ~ 2018.12',role:'서비스기획',company:'마이다스아이티',tags:['제품관리'],contrib:'다수 웹/앱 기획 및 운영으로 제품 경험 축적'},
@@ -1087,7 +1089,7 @@ function detailMidHTML(id){
   const results=(d.results||[]).map(r=>`<li>${esc(r)}</li>`).join('');
   const tech=(d.tech||[]).map(t=>`<span>${esc(t)}</span>`).join('');
   const imgs=(typeof PROJECT_IMAGES2!=='undefined'&&PROJECT_IMAGES2[id])||[];
-  const gallery=imgs.length?`<div class="d-sec"><h2>제품 화면 · 산출물</h2><div class="d-gallery">${imgs.map(im=>`<figure${im.wide?' class="wide"':''}><img src="${im.src}" alt="" loading="lazy"></figure>`).join('')}</div></div>`:'';
+  const gallery=imgs.length?`<div class="d-sec"><h2>제품 화면 · 산출물</h2><div class="d-gallery">${imgs.map(im=>`<figure${im.wide?' class="wide"':''} onclick="lightbox('',this)"><img src="${im.src}" alt="${esc(im.cap||'')}" loading="lazy"><figcaption>${esc(im.cap||'')}<span class="d-figzoom">확대 ⤢</span></figcaption></figure>`).join('')}</div></div>`:'';
   return `
   <div class="d-hero"><div class="wrap">
     <span class="backlink" onclick="goProjects()"><span aria-hidden="true">←</span> 프로젝트 목록</span>
@@ -1211,7 +1213,7 @@ function detailHTML(id){
   const tech=p.tech.map(t=>`<span>${esc(t)}</span>`).join('');
   const comps=p.comps.map(c=>`<span>${esc(c)}</span>`).join('');
   const gallery=(p.images&&p.images.length&&!p.inlineImages)?`<div class="d-sec"><h2>제품 화면 · 산출물</h2><div class="d-gallery">${
-    p.images.map(im=>`<figure${im.wide?' class="wide"':''}><img src="${im.src}" alt="${esc(im.cap||'')}" loading="lazy">${im.cap?`<figcaption>${esc(im.cap)}</figcaption>`:''}</figure>`).join('')
+    p.images.map(im=>`<figure${im.wide?' class="wide"':''} onclick="lightbox('',this)"><img src="${im.src}" alt="${esc(im.cap||'')}" loading="lazy"><figcaption>${esc(im.cap||'')}<span class="d-figzoom">확대 ⤢</span></figcaption></figure>`).join('')
   }</div></div>`:'';
   const links=(p.links&&p.links.length)?`<div class="d-sec"><h2>관련 링크</h2><div class="d-links">${
     p.links.map(l=>`<a href="${l.url}" target="_blank" rel="noopener"><span class="ic">${l.ic||'🔗'}</span><span class="tx"><span class="lb">${esc(l.lb)}</span><span class="nt">${esc(l.nt||l.url)}</span></span><span class="go" aria-hidden="true">↗</span></a>`).join('')

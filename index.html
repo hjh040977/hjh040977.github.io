@@ -548,7 +548,7 @@
     <div class="sec-head reveal">
       <div class="sec-kicker">Core Strength</div>
       <h2 class="sec-title">문제를 정의하고, 끝까지 해결합니다</h2>
-      <p class="sec-sub">해결한 프로젝트들을 기반으로 검증된 7대 핵심 역량입니다. 문제를 제대로 정의해 고객지향적으로 해결하고, 한정된 리소스로 최대 퍼포먼스를 만들어냅니다.</p>
+      <p class="sec-sub">해결한 프로젝트들을 기반으로 검증된 8대 핵심 역량입니다. 문제를 제대로 정의해 고객지향적으로 해결하고, 전략과 실행을 잇는 가교로서 한정된 리소스로 최대 퍼포먼스를 만들어냅니다.</p>
     </div>
     <div class="comp-swipe-hint reveal">옆으로 넘겨 보기 →</div>
     <div class="comp-grid">
@@ -581,6 +581,12 @@
         <div class="cap-bar"><span data-w="80%"></span></div>
         <p>프로세스·협업 체계를 세워 일정과 리스크를 관리합니다. 200억·1,500사 규모 SaaS를 ISMS 인증과 함께 안정적으로 운영했어요.</p>
         <div class="cap-projs"><span class="lbl">관련 프로젝트</span><a onclick="openDetail('b2b')">B2B 채용 200억</a><a onclick="openDetail('annotation')">Annotation Tool</a><a onclick="openDetail('mlops')">MLOps 자동화</a></div>
+      </div>
+      <div class="cap reveal">
+        <div class="cap-top"><div class="cap-name">전략–실행 가교</div><span class="cap-score">★ 8.5</span></div>
+        <div class="cap-bar"><span data-w="85%"></span></div>
+        <p>C-Level·CPO의 비전과 전략을 제품 실행 조직이 움직일 수 있는 언어로 번역하고, 현장의 제약·인사이트를 다시 경영 의사결정에 반영합니다. 전략과 실행 사이를 양방향으로 잇는 가교 역할을 해왔어요.</p>
+        <div class="cap-projs"><span class="lbl">관련 프로젝트</span><a onclick="openDetail('roadmap')">플랫폼 전략·로드맵</a><a onclick="openDetail('drawing')">AI 도면 플랫폼(DrawX)</a><a onclick="openDetail('b2b')">B2B 채용 200억</a></div>
       </div>
       <div class="cap reveal">
         <div class="cap-top"><div class="cap-name">커뮤니케이션 & 리더십</div><span class="cap-score">★ 8.0</span></div>
@@ -1733,7 +1739,7 @@ route();
     }
     // competencies
     if(has(q,'강점','역량','잘하','장점','핵심 역량','competenc','스킬','능력','뭐 잘')){
-      return {text:'검증된 7대 핵심 역량이에요: 문제정의 · 문제해결 · AI/ML 리터러시 · 데이터 리터러시 · 프로젝트 매니징 · 커뮤니케이션·리더십 · 위기관리. 각 역량은 실제 프로젝트로 연결돼 있어요.', cards:[{name:'핵심 역량 보기',cat:'Core Strength 섹션',act:'scroll:strength'}]};
+      return {text:'검증된 8대 핵심 역량이에요: 문제정의 · 문제해결 · AI/ML 리터러시 · 데이터 리터러시 · 프로젝트 매니징 · 전략–실행 가교(C-Level↔실행조직) · 커뮤니케이션·리더십 · 위기관리. 각 역량은 실제 프로젝트로 연결돼 있어요.', cards:[{name:'핵심 역량 보기',cat:'Core Strength 섹션',act:'scroll:strength'}]};
     }
     // AI general
     if(has(q,'인공지능')||has(q,'ai 프로젝트')||has(q,'ai 경험')||has(q,'ai 어디')||has(q,'머신러닝')||has(q,'생성형')||q.trim()==='ai'){

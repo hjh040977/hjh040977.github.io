@@ -154,6 +154,9 @@
   .cap-projs a{font-size:11px;font-weight:600;color:var(--accent-ink);background:var(--accent-soft);padding:3px 9px;border-radius:999px;cursor:pointer;transition:background .2s,transform .15s;display:inline-flex;align-items:center;gap:4px}
   .cap-projs a::after{content:"→";font-size:10.5px;opacity:.55}
   .cap-projs a:hover{background:#e4e3e0;transform:translateY(-1px)}
+  .cap-cases{margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+  .cap-cases .lbl{width:100%;font-size:10.5px;font-weight:700;color:var(--point);letter-spacing:.03em;margin-bottom:2px}
+  .cap-cases .ct{font-size:11px;font-weight:600;color:var(--ink-2);background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px 9px;white-space:nowrap}
   @media(max-width:760px){.cap{flex-basis:240px}}
 
   /* TIMELINE */
@@ -561,8 +564,9 @@
       <div class="cap reveal">
         <div class="cap-top"><div class="cap-name">문제해결 능력</div><span class="cap-score">★ 8.5</span></div>
         <div class="cap-bar"><span data-w="85%"></span></div>
-        <p>다양한 산업 경험을 융합해 창의적으로 발산하고, 현실을 고려해 효과적인 안으로 수렴합니다. 끝까지 파고드는 그릿으로 실행해요.</p>
-        <div class="cap-projs"><span class="lbl">관련 프로젝트</span><a onclick="openDetail('drawing')">AI 도면 플랫폼(DrawX)</a><a onclick="openDetail('b2b')">B2B 채용 200억</a><a onclick="openDetail('b2c')">B2C 채용 100만</a></div>
+        <p>다양한 산업 경험을 융합해 창의적으로 발산하고, 현실을 고려해 효과적인 안으로 수렴합니다. 특히 창원·화성·판교의 대기업 <b>제조 현장에 직접 들어가</b> 고객사 프로젝트를 성공시킨 현장 PM 경험이 강점이에요.</p>
+        <div class="cap-cases"><span class="lbl">제조 현장 PM 사례 (고객사 일부 비공개)</span><span class="ct">창원 · 효○중공업</span><span class="ct">화성 · 삼○전기</span><span class="ct">화성 · 현○차 연구소</span><span class="ct">판교 · 타이어 대기업</span></div>
+        <div class="cap-projs"><span class="lbl">관련 프로젝트</span><a onclick="openDetail('mlops')">MLOps 자동화</a><a onclick="openDetail('drawing')">AI 도면 플랫폼(DrawX)</a><a onclick="openDetail('b2b')">B2B 채용 200억</a></div>
       </div>
       <div class="cap reveal">
         <div class="cap-top"><div class="cap-name">AI / ML 리터러시</div><span class="cap-score">★ 8.5</span></div>
@@ -1006,9 +1010,10 @@ const PROJECTS = {
     blocks:[
       {h:'프로젝트 A. Object Detection 고도화 — 제조 이미지',items:['노이즈 많은 제조 이미지에서 객체 검출 정확도 향상','데이터 전처리-모델 개선-성능 검증까지 반복 가능한 워크플로우 기획','현장 피드백을 반영한 도메인 특화 Rule + AI 모델 병행 시스템 설계']},
       {h:'프로젝트 B. LLM 기반 이미지 생성 — 타이어 디자인 자동화',items:['타이어 디자이너의 창의적 디자인 생성 과정을 LLM으로 치환','사용자 인터뷰 기반 워크플로우 정의 → 시나리오 설계 → 성능 평가 알고리즘 도입','1개월 이상 걸리던 디자인 시안 생성 기간을 1주 이내로 단축 목표']},
-      {h:'프로젝트 C. Object Detection 고도화 — CSV 수치 데이터',items:['수치 데이터 기반 객체 추론 서비스 기획','데이터 포맷 간소화, Threshold 최적화, 예외 상황 정의','비정형 환경에서도 안정적으로 동작하는 Detection 시스템 기획']}
+      {h:'프로젝트 C. Object Detection 고도화 — CSV 수치 데이터',items:['수치 데이터 기반 객체 추론 서비스 기획','데이터 포맷 간소화, Threshold 최적화, 예외 상황 정의','비정형 환경에서도 안정적으로 동작하는 Detection 시스템 기획']},
+      {h:'주요 고객사 현장 적용 사례 (고객사 일부 비공개)',items:['창원 · 효○중공업 — 중공업 제조 부품 이미지 기반 Object Detection 고도화 (프로젝트 A)','화성 · 삼○전기 — 전자부품 제조 이미지 검사 AI 적용 (프로젝트 A)','화성 · 현○차 연구소 — 수치·이미지 기반 Detection 검증 (프로젝트 C)','판교 · 타이어 대기업 — LLM 기반 디자인 생성 자동화 현장 적용 (프로젝트 B)','각 현장에 직접 상주·방문하며 요구사항 정의부터 배포·검증까지 현장 PM으로 리딩']}
     ],
-    results:['ML 엔지니어의 모델 개발~배포 전 과정을 자동화하는 MLOps 체계 구축','도메인 특화 요구를 반영한 3개 산업별 AI 프로젝트 성공적 리딩','“AI × 업무 맥락” 통합의 중요성과 Vertical AI 전략의 필요성을 체득'],
+    results:['ML 엔지니어의 모델 개발~배포 전 과정을 자동화하는 MLOps 체계 구축','도메인 특화 요구를 반영한 3개 산업별 AI 프로젝트 성공적 리딩','“AI × 업무 맥락” 통합의 중요성과 Vertical AI 전략의 필요성을 체득','국내 대기업 제조 현장(중공업·전자부품·완성차·타이어) 다수에 현장 PM으로 직접 적용·성공'],
     tech:['MLOps','LLMOps','Object Detection','재학습 파이프라인','성능 모니터링','도메인 특화 AI'],
     comps:['AI/ML 리터러시','프로젝트 매니징','위기관리능력']
   },
